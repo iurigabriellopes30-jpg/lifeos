@@ -1,96 +1,203 @@
 import Card from "../../components/ui/Card";
-import PageHeader from "../../components/ui/PageHeader";
 
 export default function FinancialPage() {
   return (
-    <div className="dashboard">
-      <PageHeader
-        title="Financeiro"
-        subtitle="Visão financeira do mês"
-      />
+    <div style={{ maxWidth: "900px" }}>
+      {/* BLOCO 1 - CABEÇALHO */}
+      <header style={{ marginBottom: 32, textAlign: "center" }}>
+        <h1 style={{ fontSize: 32, margin: "0 0 8px 0" }}>FINANCEIRO</h1>
+        <p style={{ fontSize: 14, opacity: 0.7, margin: 0 }}>FASE ATUAL DO ANO — PRIORIDADE MÁXIMA</p>
+      </header>
 
-      {/* Fase Atual */}
+      {/* BLOCO 2 - VISÃO RÁPIDA */}
       <Card>
-        <h3>📊 Fase Atual</h3>
-        <div style={{ marginTop: 12, padding: "12px", background: "rgba(0,0,0,0.05)", borderRadius: 8 }}>
-          <p style={{ margin: "0 0 8px 0", fontSize: 14 }}>Análise mensal em andamento</p>
-          <div style={{ fontSize: 12, opacity: 0.6 }}>Aguardando entrada de dados...</div>
+        <h3 style={{ margin: "0 0 16px 0" }}>VISÃO RÁPIDA</h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div><strong>Total:</strong> R$ 5.000</div>
+          <div><strong>Prazo alvo:</strong> 12 meses</div>
+          <div><strong>Ritmo:</strong> R$ 416,67 / mês</div>
+          <div style={{ opacity: 0.7 }}>(R$ 13,89 / dia)</div>
         </div>
       </Card>
 
-      {/* Visão Rápida */}
-      <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
-        <Card>
-          <h3>💰 Receita</h3>
-          <div style={{ fontSize: 24, fontWeight: "bold", marginTop: 8 }}>R$ 0,00</div>
-          <p style={{ fontSize: 12, opacity: 0.6, marginTop: 4 }}>Total do mês</p>
-        </Card>
-
-        <Card>
-          <h3>💸 Despesa</h3>
-          <div style={{ fontSize: 24, fontWeight: "bold", marginTop: 8 }}>R$ 0,00</div>
-          <p style={{ fontSize: 12, opacity: 0.6, marginTop: 4 }}>Total do mês</p>
-        </Card>
-
-        <Card>
-          <h3>💵 Saldo</h3>
-          <div style={{ fontSize: 24, fontWeight: "bold", color: "#16a34a", marginTop: 8 }}>R$ 0,00</div>
-          <p style={{ fontSize: 12, opacity: 0.6, marginTop: 4 }}>Disponível</p>
-        </Card>
-      </div>
-
-      {/* Mapa Mental por Fases */}
+      {/* BLOCO 3 - MAPA MENTAL */}
       <Card>
-        <h3>🗺️ Mapa Mental por Fases</h3>
-        <div style={{ marginTop: 12 }}>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8, marginBottom: 8 }}>
-            <strong>Fase 1: Planejamento</strong>
-            <p style={{ fontSize: 12, opacity: 0.7, margin: "4px 0 0 0" }}>Definir orçamento e metas</p>
+        <h3 style={{ margin: "0 0 24px 0" }}>MAPA MENTAL — ESTRATÉGIA</h3>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0 }}>
+          {/* DÍVIDA */}
+          <div style={{
+            padding: "12px 16px",
+            background: "#dc2626",
+            color: "white",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            fontWeight: 600,
+            marginBottom: 12
+          }}>
+            DÍVIDA
           </div>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8, marginBottom: 8 }}>
-            <strong>Fase 2: Controle</strong>
-            <p style={{ fontSize: 12, opacity: 0.7, margin: "4px 0 0 0" }}>Monitorar gastos diários</p>
+
+          {/* Seta */}
+          <div style={{ fontSize: 20, marginBottom: 12 }}>↓</div>
+
+          {/* FASE 1 */}
+          <div style={{
+            padding: "12px 16px",
+            background: "rgba(0,0,0,0.05)",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            marginBottom: 12
+          }}>
+            <strong>FASE 1</strong><br />
+            <span style={{ fontSize: 12, opacity: 0.7 }}>parar sangria</span>
           </div>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8 }}>
-            <strong>Fase 3: Análise</strong>
-            <p style={{ fontSize: 12, opacity: 0.7, margin: "4px 0 0 0" }}>Revisar e otimizar gastos</p>
+
+          {/* Seta */}
+          <div style={{ fontSize: 20, marginBottom: 12 }}>↓</div>
+
+          {/* FASE 2 */}
+          <div style={{
+            padding: "12px 16px",
+            background: "rgba(0,0,0,0.05)",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            marginBottom: 12
+          }}>
+            <strong>FASE 2</strong><br />
+            <span style={{ fontSize: 12, opacity: 0.7 }}>valor total / prazo alvo</span>
+          </div>
+
+          {/* Seta */}
+          <div style={{ fontSize: 20, marginBottom: 12 }}>↓</div>
+
+          {/* FASE 3 */}
+          <div style={{
+            padding: "12px 16px",
+            background: "rgba(0,0,0,0.05)",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            marginBottom: 12
+          }}>
+            <strong>FASE 3</strong><br />
+            <span style={{ fontSize: 12, opacity: 0.7 }}>R$ 416,67 / mês (R$ 13,89 / dia)</span>
+          </div>
+
+          {/* Seta */}
+          <div style={{ fontSize: 20, marginBottom: 12 }}>↓</div>
+
+          {/* FASE 4 */}
+          <div style={{
+            padding: "12px 16px",
+            background: "rgba(0,0,0,0.05)",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            marginBottom: 12
+          }}>
+            <strong>FASE 4</strong><br />
+            <span style={{ fontSize: 12, opacity: 0.7 }}>repetir plano até concluir</span>
+          </div>
+
+          {/* Seta */}
+          <div style={{ fontSize: 20, marginBottom: 12 }}>↓</div>
+
+          {/* FASE 5 */}
+          <div style={{
+            padding: "12px 16px",
+            background: "#16a34a",
+            color: "white",
+            borderRadius: 8,
+            minWidth: "200px",
+            textAlign: "center",
+            fontWeight: 600
+          }}>
+            FASE 5 — ZERADO
           </div>
         </div>
       </Card>
 
-      {/* Ordem de Ataque */}
+      {/* BLOCO 4 - ORDEM DE ATAQUE */}
       <Card>
-        <h3>🎯 Ordem de Ataque</h3>
-        <div style={{ marginTop: 12 }}>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8, marginBottom: 8 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <strong>1. Contas Essenciais</strong>
-              <span style={{ fontSize: 12, opacity: 0.6 }}>Prioridade Máxima</span>
+        <h3 style={{ margin: "0 0 16px 0" }}>ORDEM DE ATAQUE</h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {/* Dívida 1 */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+              <strong>Dívida 1</strong>
+              <span>70%</span>
+            </div>
+            <div style={{
+              width: "100%",
+              height: 8,
+              background: "rgba(0,0,0,0.1)",
+              borderRadius: 4,
+              overflow: "hidden"
+            }}>
+              <div style={{
+                width: "70%",
+                height: "100%",
+                background: "#2563eb",
+                borderRadius: 4
+              }}></div>
             </div>
           </div>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8, marginBottom: 8 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <strong>2. Investimentos</strong>
-              <span style={{ fontSize: 12, opacity: 0.6 }}>Prioridade Alta</span>
+
+          {/* Dívida 2 */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+              <strong>Dívida 2</strong>
+              <span>30%</span>
+            </div>
+            <div style={{
+              width: "100%",
+              height: 8,
+              background: "rgba(0,0,0,0.1)",
+              borderRadius: 4,
+              overflow: "hidden"
+            }}>
+              <div style={{
+                width: "30%",
+                height: "100%",
+                background: "#2563eb",
+                borderRadius: 4
+              }}></div>
             </div>
           </div>
-          <div style={{ padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <strong>3. Lazer</strong>
-              <span style={{ fontSize: 12, opacity: 0.6 }}>Prioridade Baixa</span>
+
+          {/* Dívida 3 */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+              <strong>Dívida 3</strong>
+              <span>0%</span>
+            </div>
+            <div style={{
+              width: "100%",
+              height: 8,
+              background: "rgba(0,0,0,0.1)",
+              borderRadius: 4,
+              overflow: "hidden"
+            }}>
+              <div style={{
+                width: "0%",
+                height: "100%",
+                background: "#2563eb",
+                borderRadius: 4
+              }}></div>
             </div>
           </div>
         </div>
       </Card>
 
-      {/* Foco Atual da Semana */}
+      {/* BLOCO 5 - FOCO ATUAL */}
       <Card>
-        <h3>🔍 Foco Atual da Semana</h3>
-        <div style={{ marginTop: 12, padding: "12px", background: "rgba(37, 99, 235, 0.1)", borderRadius: 8 }}>
-          <p style={{ margin: 0, fontWeight: 600 }}>Revisar e categorizar gastos</p>
-          <p style={{ fontSize: 12, opacity: 0.7, margin: "8px 0 0 0" }}>
-            Classificar transações por categoria para melhor entendimento do padrão de gastos
-          </p>
+        <h3 style={{ margin: "0 0 16px 0" }}>FOCO ATUAL</h3>
+        <div style={{ lineHeight: 1.6 }}>
+          <p><strong>Esta semana:</strong></p>
+          <p style={{ margin: "8px 0 0 0" }}>→ manter R$ 13,89 / dia</p>
         </div>
       </Card>
     </div>
