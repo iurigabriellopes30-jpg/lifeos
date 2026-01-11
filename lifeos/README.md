@@ -120,3 +120,4 @@ src/
  └─ main.tsx
 
 ATUALIZADO 10.01
+atualizado dia de hoje
