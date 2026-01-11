@@ -119,5 +119,4 @@ src/
  ├─ App.tsx
  └─ main.tsx
 
-ATUALIZADO 10.01
-atualizado dia de hoje
+ATUALIZADO 11.01

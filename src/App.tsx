@@ -8,6 +8,7 @@ import DashboardPage from "./features/dashboard/DashboardPage";
 import TasksPage from "./features/tasks/TasksPage";
 import HabitsPage from "./features/habits/HabitsPage";
 import CalendarPage from "./features/calendar/CalendarPage";
+import FinancialPage from "./features/financial/FinancialPage";
 import SettingsPage from "./features/settings/SettingsPage";
 
 import { useToastProvider } from "./shared/useToast";
@@ -17,6 +18,7 @@ type Page =
   | "tasks"
   | "habits"
   | "calendar"
+  | "financial"
   | "settings";
 
 export default function App() {
@@ -52,6 +54,8 @@ export default function App() {
         return <HabitsPage />;
       case "calendar":
         return <CalendarPage />;
+      case "financial":
+        return <FinancialPage />;
       case "settings":
         return (
           <SettingsPage

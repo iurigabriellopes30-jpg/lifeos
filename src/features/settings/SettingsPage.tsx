@@ -49,7 +49,7 @@ export default function SettingsPage({ onToggleTheme, theme }: Props) {
 
   return (
     <div className="card">
-      <h1>Settings</h1>
+      <h1>Configurações</h1>
       <p className="subtitle">Preferências e backup</p>
 
       {/* TEMA */}
