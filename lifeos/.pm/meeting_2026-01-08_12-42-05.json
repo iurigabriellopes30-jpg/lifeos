@@ -1,0 +1,13 @@
+{
+  "meeting_id": "meeting_2026-01-08_12-42-05",
+  "transcript": [
+    {
+      "role": "user",
+      "content": "reuniao"
+    },
+    {
+      "role": "pm",
+      "content": "{\"type\": \"kickoff\", \"agenda\": [\"Definir escopo do projeto LifeOS\", \"Validar requisitos técnicos\", \"Estabelecer prazos e responsabilidades\"], \"questions\": [\"O que é o objetivo principal do projeto LifeOS?\", \"Quais são os principais recursos necessários para o MVP?\"], \"assumptions\": [\"O time de desenvolvimento tem experiência com React e Vite\", \"O uso de IndexedDB via Dexie é adequado para armazenamento de dados\"], \"risks\": [\"Dificuldades com a implementação da criptografia automática local\", \"Problemas de compatibilidade com diferentes navegadores\"], \"next_question\": \"Qual é a abordagem mais adequada para a implementação da criptografia automática local sem senha?\"}"
+    }
+  ]
+}
