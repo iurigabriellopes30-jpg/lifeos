@@ -19,7 +19,7 @@ export default function Sidebar({ onNavigate, active }: SidebarProps) {
         className={active === "tasks" ? "active" : ""}
         onClick={() => onNavigate("tasks")}
       >
-        Tasks
+        Tarefas
       </button>
 
       <button
@@ -37,8 +37,8 @@ export default function Sidebar({ onNavigate, active }: SidebarProps) {
       </button>
 
       <button
-        className={active === "financial" ? "active" : ""}
-        onClick={() => onNavigate("financial")}
+        className={active === "financeiro" ? "active" : ""}
+        onClick={() => onNavigate("financeiro")}
       >
         Financeiro
       </button>
@@ -47,7 +47,7 @@ export default function Sidebar({ onNavigate, active }: SidebarProps) {
         className={active === "settings" ? "active" : ""}
         onClick={() => onNavigate("settings")}
       >
-        Configurações
+        Settings
       </button>
     </aside>
   );

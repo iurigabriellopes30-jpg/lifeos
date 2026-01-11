@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { db, Habit } from "../../shared/db";
+import ItemRow from "../../components/ui/ItemRow";
 
 export default function HabitsPage() {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -16,21 +17,23 @@ export default function HabitsPage() {
   return (
     <div className="card">
       <h1>Hábitos</h1>
-      <p className="subtitle">Este item é gerenciado pelo LifeOS no chat.</p>
+
+      <p style={{ color: "#666", marginBottom: "20px" }}>
+        Este item é gerenciado pelo LifeOS no chat.
+      </p>
 
       {habits.length === 0 && (
         <p className="empty">Nenhum hábito ainda.</p>
       )}
 
       {habits.map((habit) => (
-        <div key={habit.id} className="item-row" style={{ pointerEvents: 'none', opacity: 0.7 }}>
-          <input
-            type="checkbox"
-            checked={habit.done}
-            readOnly
-          />
-          <span className={habit.done ? "done" : ""}>{habit.title}</span>
-        </div>
+        <ItemRow
+          key={habit.id}
+          label={habit.title}
+          checked={habit.done}
+          onToggle={() => {}}
+          onDelete={() => {}}
+        />
       ))}
     </div>
   );

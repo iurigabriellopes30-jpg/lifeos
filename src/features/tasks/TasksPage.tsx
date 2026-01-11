@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { db, Task } from "../../shared/db";
+import ItemRow from "../../components/ui/ItemRow";
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -15,22 +16,24 @@ export default function TasksPage() {
 
   return (
     <div className="card">
-      <h1>Tasks</h1>
-      <p className="subtitle">Este item é gerenciado pelo LifeOS no chat.</p>
+      <h1>Tarefas</h1>
+
+      <p style={{ color: "#666", marginBottom: "20px" }}>
+        Este item é gerenciado pelo LifeOS no chat.
+      </p>
 
       {tasks.length === 0 && (
         <p className="empty">Nenhuma task ainda.</p>
       )}
 
       {tasks.map((task) => (
-        <div key={task.id} className="item-row" style={{ pointerEvents: 'none', opacity: 0.7 }}>
-          <input
-            type="checkbox"
-            checked={task.done}
-            readOnly
-          />
-          <span className={task.done ? "done" : ""}>{task.title}</span>
-        </div>
+        <ItemRow
+          key={task.id}
+          label={task.title}
+          checked={task.done}
+          onToggle={() => {}}
+          onDelete={() => {}}
+        />
       ))}
     </div>
   );
