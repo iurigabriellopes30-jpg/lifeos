@@ -11,6 +11,7 @@ import HabitsPage from "./features/habits/HabitsPage";
 import CalendarPage from "./features/calendar/CalendarPage";
 import SettingsPage from "./features/settings/SettingsPage";
 import ChatPage from "./features/chat/ChatPage";
+import FinanceiroPage from "./features/financeiro/FinanceiroPage";
 
 import { useToastProvider } from "./shared/useToast";
 
@@ -19,6 +20,7 @@ type Page =
   | "tasks"
   | "habits"
   | "calendar"
+  | "financeiro"
   | "settings"
   | "chat";
 
@@ -81,6 +83,8 @@ export default function App() {
         return <HabitsPage />;
       case "calendar":
         return <CalendarPage />;
+      case "financeiro":
+        return <FinanceiroPage />;
       case "settings":
         return (
           <SettingsPage

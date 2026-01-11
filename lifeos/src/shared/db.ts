@@ -33,6 +33,17 @@ export type CalendarEvent = {
   energy?: Energy;
 };
 
+export type FinanceiroState = {
+  id: number; // sempre 1 (singleton)
+  faseAtual: string | null;
+  totalDivida: number | null;
+  prazoAlvoMeses: number | null;
+  ritmoMensal: number | null;
+  ritmoDiario: number | null;
+  focoAtual: string | null;
+  ultimaAtualizacao: number; // timestamp
+};
+
 /* ===== DATABASE ===== */
 
 export type RoutineRecord = {
@@ -48,6 +59,7 @@ class LifeOSDB extends Dexie {
   habits!: Table<Habit, number>;
   calendar!: Table<CalendarEvent, number>;
   routines!: Table<RoutineRecord, number>;
+  financeiro!: Table<FinanceiroState, number>;
 
   constructor() {
     super("LifeOSDB");
@@ -74,10 +86,49 @@ class LifeOSDB extends Dexie {
       calendar: "id, title, date, time, energy",
       routines: "id, date, origin, confirmed",
     });
+
+    // versão 6: adiciona tabela financeiro (singleton)
+    this.version(6).stores({
+      tasks: "id, title, done, priority, scheduledFor",
+      habits: "id, title, done, frequency, lastDoneAt",
+      calendar: "id, title, date, time, energy",
+      routines: "id, date, origin, confirmed",
+      financeiro: "id",
+    });
   }
 }
 
 export const db = new LifeOSDB();
+
+// === Inicializar estado financeiro vazio (singleton) ===
+export async function initFinanceiro(): Promise<void> {
+  const existing = await db.financeiro.get(1);
+  if (!existing) {
+    await db.financeiro.add({
+      id: 1,
+      faseAtual: null,
+      totalDivida: null,
+      prazoAlvoMeses: null,
+      ritmoMensal: null,
+      ritmoDiario: null,
+      focoAtual: null,
+      ultimaAtualizacao: Date.now(),
+    });
+  }
+}
+
+// === Ler estado financeiro ===
+export async function getFinanceiro(): Promise<FinanceiroState | undefined> {
+  return await db.financeiro.get(1);
+}
+
+// === Atualizar estado financeiro (controlado pela IA) ===
+export async function updateFinanceiro(data: Partial<Omit<FinanceiroState, "id">>): Promise<void> {
+  await db.financeiro.update(1, {
+    ...data,
+    ultimaAtualizacao: Date.now(),
+  });
+}
 
 // === Cleanup: remove registros automáticos não confirmados ou testes ===
 export async function cleanupRoutines(): Promise<number> {

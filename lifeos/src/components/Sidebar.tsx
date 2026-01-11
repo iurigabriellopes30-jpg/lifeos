@@ -30,6 +30,13 @@ export default function Sidebar({ onNavigate, active }: SidebarProps) {
       </button>
 
       <button
+        className={active === "financeiro" ? "active" : ""}
+        onClick={() => onNavigate("financeiro")}
+      >
+        Financeiro
+      </button>
+
+      <button
         className={active === "calendar" ? "active" : ""}
         onClick={() => onNavigate("calendar")}
       >

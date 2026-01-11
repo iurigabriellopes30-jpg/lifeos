@@ -2,12 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { db, cleanupRoutines } from "../../shared/db";
 import { sendMessageToAI, AIResponse } from "../../shared/ai/ai";
 
+type PendingAction = {
+  type: string;
+  operation: string;
+  payload: any;
+  description: string;
+};
+
 type Message = {
   id: string;
   sender: "user" | "lifeos";
   text: string;
   ts: number;
-  kind?: "conversation" | "suggestion" | "action_proposal";
+  pendingAction?: PendingAction;
 };
 
 export default function ChatPage() {
@@ -16,18 +23,6 @@ export default function ChatPage() {
   ]);
   const [text, setText] = useState("");
   const listRef = useRef<HTMLDivElement | null>(null);
-
-  function classifyAIText(text: string): "conversation" | "suggestion" | "action_proposal" {
-    const t = text.toLowerCase();
-    const hasConfirm = t.includes("deseja confirmar?") || t.includes("quer que eu faça isso?");
-    const hasExplicitActionVerb = /(apagar|excluir|remover|alterar|ajustar|executar|limpar|criar|mover)/.test(t);
-    const hasObjectTarget = /(registros|tarefas|rotina|prioridade|data|hoje)/.test(t);
-    const isSuggestive = /(posso|poderia|sugiro|talvez|vamos)/.test(t);
-
-    if (hasConfirm && hasExplicitActionVerb && hasObjectTarget) return "action_proposal";
-    if (isSuggestive) return "suggestion";
-    return "conversation";
-  }
 
   useEffect(() => {
     // scroll to bottom when messages change
@@ -75,21 +70,24 @@ export default function ChatPage() {
       };
 
       const aiRes: AIResponse = await sendMessageToAI(trimmed, context);
-      const kind = classifyAIText(aiRes.reply);
+      
+      // Only display reply text - no actions shown to user (all backend orchestrated)
+      console.log("[CHAT] AI Response:", JSON.stringify(aiRes));
+      
       const reply: Message = {
         id: `l-${Date.now()}`,
         sender: "lifeos",
         text: aiRes.reply,
         ts: Date.now(),
-        kind,
       };
       setMessages((m) => [...m, reply]);
-      // Nunca mostrar botões para perguntas do usuário ou sugestões genéricas.
     } catch (err) {
+      console.error("[CHAT] Error:", err);
+      const errorMsg = err instanceof Error ? err.message : String(err);
       const reply: Message = {
         id: `l-${Date.now()}`,
         sender: "lifeos",
-        text: "IA temporariamente indisponível. Verifique se o backend está rodando.",
+        text: `Erro ao conectar com backend: ${errorMsg}`,
         ts: Date.now(),
       };
       setMessages((m) => [...m, reply]);
@@ -113,75 +111,13 @@ export default function ChatPage() {
 
         <div ref={listRef} className="messages-list" style={{ padding: 18, overflowY: "auto", flex: 1 }}>
           {messages.map((m) => (
-            <div key={m.id} className={`message ${m.sender === "user" ? "user" : "system"}`}> 
-              <div className="bubble">{m.text}</div>
-              <div className="msg-ts">{new Date(m.ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+            <div key={m.id}>
+              <div className={`message ${m.sender === "user" ? "user" : "system"}`}> 
+                <div className="bubble">{m.text}</div>
+                <div className="msg-ts">{new Date(m.ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+              </div>
             </div>
           ))}
-
-          {/* Mostrar botões somente quando a última mensagem da IA for uma proposta explícita */}
-          {messages.length > 0 && messages[messages.length - 1].sender === "lifeos" && messages[messages.length - 1].kind === "action_proposal" && (
-            <div className="action-confirm" style={{ marginTop: 12, padding: 12, border: "1px dashed rgba(0,0,0,0.15)", borderRadius: 8 }}>
-              <div style={{ marginBottom: 10 }}>
-                <strong>Confirmação de ação</strong>
-                <div style={{ color: "#555", marginTop: 6 }}>A IA descreveu uma ação específica. Deseja confirmar?</div>
-              </div>
-              <div style={{ display: "flex", gap: 10 }}>
-                <button
-                  onClick={async () => {
-                    // Register the last meaningful user message as routine, with explicit confirmation
-                    const lastUser = [...messages].reverse().find(m => m.sender === "user");
-                    const candidate = (lastUser?.text || "").trim();
-                    if (candidate && candidate.length >= 4) {
-                      try {
-                        await db.routines.add({
-                          id: Date.now(),
-                          text: candidate,
-                          date: Date.now(),
-                          origin: "chat",
-                          confirmed: true,
-                        });
-                        const reply: Message = {
-                          id: `l-${Date.now()}`,
-                          sender: "lifeos",
-                          text: "Confirmado. Registrei na sua rotina.",
-                          ts: Date.now(),
-                        };
-                        setMessages((m) => [...m, reply]);
-                      } catch {
-                        const reply: Message = {
-                          id: `l-${Date.now()}`,
-                          sender: "lifeos",
-                          text: "Não foi possível registrar sua rotina agora.",
-                          ts: Date.now(),
-                        };
-                        setMessages((m) => [...m, reply]);
-                      }
-                    } else {
-                      const reply: Message = {
-                        id: `l-${Date.now()}`,
-                        sender: "lifeos",
-                        text: "Texto insuficiente para registrar uma rotina.",
-                        ts: Date.now(),
-                      };
-                      setMessages((m) => [...m, reply]);
-                    }
-                  }}
-                >Confirmar</button>
-                <button
-                  onClick={() => {
-                    const reply: Message = {
-                      id: `l-${Date.now()}`,
-                      sender: "lifeos",
-                      text: "Entendido. Ação cancelada.",
-                      ts: Date.now(),
-                    };
-                    setMessages((m) => [...m, reply]);
-                  }}
-                >Cancelar</button>
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="chat-input-bar" style={{ padding: 14, borderTop: "1px solid rgba(0,0,0,0.04)" }}>
