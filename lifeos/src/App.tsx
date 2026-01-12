@@ -1,31 +1,19 @@
 import { useEffect, useState } from "react";
 import { cleanupRoutines } from "./shared/db";
 
-import Sidebar from "./components/Sidebar";
-import Main from "./components/Main";
+import SimpleSidebar from "./components/SimpleSidebar";
 import Toast from "./components/ui/Toast";
 
-import DashboardPage from "./features/dashboard/DashboardPage";
-import TasksPage from "./features/tasks/TasksPage";
-import HabitsPage from "./features/habits/HabitsPage";
-import CalendarPage from "./features/calendar/CalendarPage";
-import SettingsPage from "./features/settings/SettingsPage";
+import ControlePage from "./features/controle/ControlePage";
 import ChatPage from "./features/chat/ChatPage";
-import FinanceiroPage from "./features/financeiro/FinanceiroPage";
+import SimpleSettings from "./features/settings/SimpleSettings";
 
 import { useToastProvider } from "./shared/useToast";
 
-type Page =
-  | "dashboard"
-  | "tasks"
-  | "habits"
-  | "calendar"
-  | "financeiro"
-  | "settings"
-  | "chat";
+type Page = "controle" | "chat" | "settings";
 
 export default function App() {
-  const [page, setPage] = useState<Page>("dashboard");
+  const [page, setPage] = useState<Page>("controle");
 
   /* =========================
      🌗 TEMA (REAL)
@@ -77,32 +65,26 @@ export default function App() {
 
   function renderPage() {
     switch (page) {
-      case "tasks":
-        return <TasksPage />;
-      case "habits":
-        return <HabitsPage />;
-      case "calendar":
-        return <CalendarPage />;
-      case "financeiro":
-        return <FinanceiroPage />;
+      case "chat":
+        return <ChatPage />;
       case "settings":
         return (
-          <SettingsPage
+          <SimpleSettings
             theme={theme}
             onToggleTheme={toggleTheme}
           />
         );
-      case "chat":
-        return <ChatPage />;
       default:
-        return <DashboardPage />;
+        return <ControlePage />;
     }
   }
 
   return (
     <div className="app-layout">
-      <Sidebar onNavigate={setPage} active={page} />
-      <Main>{renderPage()}</Main>
+      <SimpleSidebar active={page === "controle" ? "controle" : page === "settings" ? "settings" : "controle"} onNavigate={(p) => setPage(p)} />
+      <div className="app-content">
+        {renderPage()}
+      </div>
 
       {toast.message && (
         <Toast

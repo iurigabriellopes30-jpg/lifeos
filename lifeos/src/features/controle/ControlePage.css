@@ -1,0 +1,440 @@
+.controle-page {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #000000);
+  padding: 2rem 1.5rem;
+}
+
+/* ========== HEADER ========== */
+.controle-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+}
+
+.controle-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.controle-header .subtitulo {
+  font-size: 1.2rem;
+  color: var(--text-secondary, #666);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ========== CARDS CONTAINER ========== */
+.controle-cards {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== CARD STYLE ========== */
+.card {
+  background: var(--bg-secondary, #f9f9f9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: var(--text-primary, #000);
+}
+
+.card-content {
+  color: var(--text-primary, #000);
+}
+
+/* ========== CARD 1: FASE ========== */
+.fase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.fase-item {
+  padding: 1rem;
+  background: var(--bg-primary, #fff);
+  border-radius: 8px;
+}
+
+.fase-item .label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.valor-grande {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2196f3;
+}
+
+/* ========== CARD 2: FOCO ========== */
+.foco-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.foco-list li {
+  padding: 1rem;
+  background: var(--bg-primary, #fff);
+  border-left: 3px solid #4caf50;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ========== CARD 3: ESTRATÉGIA ========== */
+.estrategia-list {
+  padding-left: 1.5rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.8;
+}
+
+.estrategia-list li {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.estrategia-objetivo {
+  margin: 0;
+  padding: 1.2rem;
+  background: var(--bg-primary, #fff);
+  border-left: 3px solid #ff9800;
+  border-radius: 4px;
+  font-style: italic;
+  color: var(--text-secondary, #555);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ========== CARD 4: VISÃO FINANCEIRA ========== */
+.financeiro-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary, #000);
+}
+
+.dividas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.divida-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: var(--bg-primary, #fff);
+  border-left: 3px solid #9c27b0;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.divida-valor {
+  font-weight: 700;
+  color: #d32f2f;
+}
+
+.sem-dividas {
+  text-align: center;
+  color: var(--text-secondary, #666);
+  font-style: italic;
+  padding: 1.5rem;
+  background: var(--bg-primary, #fff);
+  border-radius: 4px;
+}
+
+.financeiro-totals {
+  background: var(--bg-primary, #fff);
+  border-radius: 8px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.total-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.total-valor {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2196f3;
+}
+
+/* ========== CARD 5: AÇÃO ÚNICA ========== */
+.card-acao {
+  background: linear-gradient(135deg, var(--bg-secondary, #f0f7ff) 0%, var(--bg-secondary, #e8f4fd) 100%);
+}
+
+.checkbox-grande {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  background: var(--bg-primary, #fff);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.checkbox-grande:hover {
+  border-color: #2196f3;
+}
+
+.checkbox-grande input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin-right: 1rem;
+  cursor: pointer;
+  accent-color: #2196f3;
+}
+
+.checkbox-grande span {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* ========== CARD 6: CONFIRMAÇÕES ========== */
+.checkbox-simples {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-simples:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-simples input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.8rem;
+  cursor: pointer;
+  accent-color: #4caf50;
+}
+
+.checkbox-simples span {
+  font-size: 0.95rem;
+}
+
+/* ========== CARD 7: MANIFESTO ========== */
+.card-manifesto {
+  background: linear-gradient(135deg, var(--bg-secondary, #f0f7ff) 0%, var(--bg-secondary, #fffbf0) 100%);
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.manifesto-texto {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-primary, #000);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.manifesto-texto strong {
+  font-weight: 700;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* ========== AÇÕES FIXAS ========== */
+.acoes-fixas {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 2rem 0 0 0;
+}
+
+button {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #2196f3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.btn-secondary {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #388e3c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-tertiary {
+  background: #f44336;
+  color: white;
+}
+
+.btn-tertiary:hover {
+  background: #d32f2f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+  .controle-page {
+    background: #1e1e1e;
+    color: #ffffff;
+  }
+
+  .controle-header .subtitulo {
+    color: #aaa;
+  }
+
+  .card {
+    background: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .card h2 {
+    color: #ffffff;
+  }
+
+  .fase-item {
+    background: #333;
+  }
+
+  .foco-list li {
+    background: #333;
+    border-left-color: #66bb6a;
+  }
+
+  .estrategia-objetivo {
+    background: #333;
+    color: #ccc;
+    border-left-color: #ffb74d;
+  }
+
+  .divida-row {
+    background: #333;
+    border-left-color: #ba68c8;
+  }
+
+  .sem-dividas {
+    background: #333;
+    color: #aaa;
+  }
+
+  .financeiro-totals {
+    background: #333;
+  }
+
+  .checkbox-grande {
+    background: #333;
+  }
+
+  .checkbox-grande:hover {
+    border-color: #66bb6a;
+  }
+
+  .manifesto-texto {
+    color: #ffffff;
+  }
+
+  .card-manifesto {
+    background: linear-gradient(135deg, #2a3a3a 0%, #3a2a2a 100%);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .controle-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .controle-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .controle-header .subtitulo {
+    font-size: 1rem;
+  }
+
+  .controle-cards {
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .fase-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .acoes-fixas {
+    padding: 1.5rem 0 0 0;
+  }
+
+  button {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}

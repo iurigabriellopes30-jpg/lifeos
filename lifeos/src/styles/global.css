@@ -33,6 +33,13 @@ body[data-theme="dark"] {
 .app-layout {
   display: flex;
   height: 100vh;
+  width: 100%;
+}
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
 }
 
 main {

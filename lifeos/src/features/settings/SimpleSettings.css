@@ -1,0 +1,360 @@
+.settings-page {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #000000);
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* ========== HEADER ========== */
+.settings-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+}
+
+.settings-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+
+.settings-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary, #666);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* ========== CONTAINER ========== */
+.settings-container {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== CARDS ========== */
+.settings-card {
+  background: var(--bg-secondary, #f9f9f9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.settings-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.settings-card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: var(--text-primary, #000);
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ========== SETTING ROW ========== */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.setting-label {
+  font-weight: 500;
+  color: var(--text-primary, #000);
+  font-size: 0.95rem;
+}
+
+/* ========== THEME TOGGLE ========== */
+.theme-toggle {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #000);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle:hover {
+  background: #f5f5f5;
+  border-color: #2196f3;
+  color: #2196f3;
+}
+
+/* ========== TONE SELECTOR ========== */
+.tone-selector {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tone-btn {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  background: var(--bg-primary, #fff);
+  color: var(--text-secondary, #666);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tone-btn:hover {
+  background: #f5f5f5;
+  border-color: #2196f3;
+  color: var(--text-primary, #000);
+}
+
+.tone-btn.active {
+  background: #2196f3;
+  color: white;
+  border-color: #2196f3;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+}
+
+/* ========== DATA BUTTONS ========== */
+.data-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.btn-data {
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  background: var(--bg-primary, #fff);
+  color: var(--text-primary, #000);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-export:hover {
+  background: #e8f5e9;
+  border-color: #4caf50;
+  color: #4caf50;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+.btn-import:hover {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #2196f3;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+}
+
+.data-description {
+  margin: 0;
+  color: var(--text-secondary, #666);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ========== SYSTEM INFO ========== */
+.system-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: var(--bg-primary, #fff);
+  border-radius: 6px;
+}
+
+.info-label {
+  font-weight: 500;
+  color: var(--text-secondary, #666);
+  font-size: 0.9rem;
+}
+
+.info-value {
+  font-weight: 600;
+  color: var(--text-primary, #000);
+  font-size: 0.9rem;
+}
+
+/* ========== STATUS MESSAGE ========== */
+.status-message {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  animation: slideIn 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.status-message.success {
+  background: #4caf50;
+  color: white;
+}
+
+.status-message.error {
+  background: #f44336;
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+  .settings-page {
+    background: #1e1e1e;
+    color: #ffffff;
+  }
+
+  .settings-header .subtitulo {
+    color: #aaa;
+  }
+
+  .settings-card {
+    background: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .settings-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .settings-card h2 {
+    color: #ffffff;
+  }
+
+  .theme-toggle {
+    background: #333;
+    border-color: #444;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .theme-toggle:hover {
+    background: #3a3a3a;
+    border-color: #2196f3;
+  }
+
+  .tone-btn {
+    background: #333;
+    border-color: #444;
+    color: #aaa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .tone-btn:hover {
+    background: #3a3a3a;
+    border-color: #2196f3;
+    color: #ffffff;
+  }
+
+  .tone-btn.active {
+    background: #2196f3;
+    border-color: #2196f3;
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+  }
+
+  .btn-data {
+    background: #333;
+    border-color: #444;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-export:hover {
+    background: #1a3a1a;
+    border-color: #66bb6a;
+    color: #66bb6a;
+  }
+
+  .btn-import:hover {
+    background: #1a3a52;
+    border-color: #66b7ff;
+    color: #66b7ff;
+  }
+
+  .data-description {
+    color: #aaa;
+  }
+
+  .info-row {
+    background: #333;
+  }
+
+  .info-label {
+    color: #999;
+  }
+
+  .info-value {
+    color: #ffffff;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .settings-page {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .settings-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .settings-header .subtitulo {
+    font-size: 1rem;
+  }
+
+  .settings-container {
+    gap: 1.5rem;
+  }
+
+  .settings-card {
+    padding: 1.5rem;
+  }
+
+  .data-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .status-message {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+

@@ -104,12 +104,24 @@ export default function ChatPage() {
     }
   }
 
+  function handleVoltar() {
+    const event = new CustomEvent("app:navigate", {
+      detail: "controle",
+    });
+    window.dispatchEvent(event);
+  }
+
   return (
     <div className="page-container chat-page">
       <div className="card" style={{ maxWidth: 820, margin: "24px auto", padding: 0, display: "flex", flexDirection: "column", height: "72vh" }}>
-        <div style={{ padding: 18, borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-          <h1>Chat</h1>
-          <p className="subtitle">Converse com o LifeOS</p>
+        <div style={{ padding: 18, borderBottom: "1px solid rgba(0,0,0,0.04)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div>
+            <h1>Chat</h1>
+            <p className="subtitle">Converse com o LifeOS</p>
+          </div>
+          <button onClick={handleVoltar} style={{ padding: "0.5rem 1rem", borderRadius: "4px", border: "1px solid #ddd", background: "white", cursor: "pointer" }}>
+            Voltar
+          </button>
         </div>
 
         <div ref={listRef} className="messages-list" style={{ padding: 18, overflowY: "auto", flex: 1 }}>
