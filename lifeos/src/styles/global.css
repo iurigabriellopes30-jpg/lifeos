@@ -1,0 +1,977 @@
+/* =========================
+   RESET
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* =========================
+   TEMA CLARO / ESCURO
+========================= */
+body[data-theme="light"] {
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+body[data-theme="dark"] {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 220px;
+  background: #020617;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar h1 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.sidebar button {
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.sidebar button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+}
+
+.sidebar button.active {
+  background: #2563eb;
+  box-shadow: 0 10px 30px rgba(37,99,235,0.08);
+  transform: translateY(-2px);
+} 
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px; /* mais respiro */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin-bottom: 20px; /* espaçamento entre seções */
+}
+
+body[data-theme="dark"] .card {
+  background: #020617;
+}
+
+/* =========================
+   HEADERS
+========================= */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 6px;
+  font-weight: 700; /* títulos */
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.subtitle {
+  opacity: 0.72;
+  margin-bottom: 12px;
+  font-weight: 500; /* subtítulos / mensagens */
+  font-size: 13px;
+}
+
+.context-message .subtitle {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* =========================
+   INPUTS + BOTÕES
+========================= */
+input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400; /* texto normal */
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+input:focus, textarea:focus, select:focus, input:focus-visible {
+  outline: none;
+  border-color: rgba(37,99,235,0.18);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.06);
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 700; /* botões seguem peso de destaque */
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+}
+body[data-theme="dark"] input {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 120ms ease, background 120ms ease;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0) scale(0.997);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+} 
+
+/* =========================
+   LISTAS (Tasks / Habits / Calendar)
+========================= */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* respiração entre itens */
+}
+
+.empty {
+  opacity: 0.62;
+  margin-top: 14px;
+  font-size: 13px;
+  font-style: italic;
+  color: inherit;
+}
+
+/* =========================
+   ITEM ROW (padronização)
+========================= */
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px; /* maior respiro */
+  border-radius: 12px;
+  background: rgba(0,0,0,0.03);
+  transition: transform 180ms ease, opacity 180ms ease, background 120ms ease, box-shadow 160ms ease;
+  gap: 12px;
+  will-change: transform;
+}
+
+body[data-theme="dark"] .item-row {
+  background: rgba(255,255,255,0.05);
+}
+
+.item-row:hover:not(.done) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.item-row:focus-within {
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.06);
+  outline: none;
+}
+
+.item-row label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.item-row span {
+  position: relative;
+  transition: color 180ms ease, opacity 180ms ease;
+  font-size: 15px;
+}
+
+/* strike-through implemented with pseudo-element for smooth animation */
+.item-row span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: currentColor;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 220ms ease;
+}
+
+.item-row.done {
+  opacity: 0.75;
+  transform: none;
+}
+
+.item-row.done span {
+  opacity: 0.6;
+}
+
+.item-row.done span::after {
+  transform: scaleX(1);
+} 
+
+/* subtle hover on cards */
+.card, .dashboard-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover, .dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+}
+
+/* floating chat hover + focus */
+.floating-chat {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.floating-chat:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+}
+
+.floating-chat:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+  transform: scale(1.03);
+}
+
+/* =========================
+   CHAT
+========================= */
+.chat-page .card {
+  display: flex;
+  flex-direction: column;
+  height: 72vh;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 78%;
+}
+
+.message.user {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.message.system {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.bubble {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(2,6,23,0.06);
+  color: inherit;
+  font-size: 14px;
+}
+
+.message.user .bubble {
+  background: #2563eb;
+  color: white;
+}
+
+.msg-ts {
+  opacity: 0.56;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.chat-input-bar input {
+  padding: 10px 12px;
+}
+
+.chat-input-bar button {
+  padding: 10px 14px;
+}
+
+/* =========================
+   BOTÃO REMOVER (X)
+========================= */
+.remove-btn {
+  background: #2563eb;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 16px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+.dashboard {
+  max-width: 1000px; /* container width for dashboard content */
+  margin: 0 auto; /* center horizontally */
+  width: 100%;
+  padding: 0 16px; /* ensure content doesn't touch edges */
+}
+
+/* =========================
+   TASKS LAYOUT (visual only)
+========================= */
+.tasks-section {
+  margin-top: 18px;
+}
+
+.tasks-section h2 {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  margin: 0 0 8px 0;
+}
+
+.tasks-section.essential {
+  border-left: 4px solid rgba(37,99,235,0.12);
+  padding-left: 12px;
+}
+
+.tasks-section.important {
+  border-left: 4px solid rgba(2,6,23,0.06);
+  padding-left: 12px;
+}
+
+.tasks-section.optional {
+  border-left: 4px solid transparent;
+  padding-left: 12px;
+}
+
+.optional-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-optional {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.priority-select input[type="radio"] {
+  margin-right: 8px;
+}
+
+.priority-select label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.priority-select input[type="radio"]:checked + strong {
+  font-weight: 700;
+}
+
+/* ensure creation card aligns with other cards */
+.card > .input-row, .card > div > .input-row {
+  margin-top: 0;
+}
+
+/* small highlight for priority focus */
+.priority-card.highlight {
+  box-shadow: 0 12px 34px rgba(37,99,235,0.08);
+  transform: translateY(-4px);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.context-message {
+  margin-bottom: 16px; /* mais respiro entre seções */
+}
+
+.context-message h2 {
+  margin: 0 0 6px 0;
+}
+
+.context-message .subtitle {
+  margin-top: 4px;
+}
+
+/* Context message actions */
+.context-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.context-action-btn {
+  background: rgba(2,6,23,0.04);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+
+.context-action-btn:hover {
+  background: rgba(2,6,23,0.08);
+  transform: translateY(-2px);
+}
+
+.context-action-feedback {
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.8;
+  color: inherit;
+}
+
+.context-confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(2,6,23,0.02);
+}
+
+.context-confirmation .subtitle {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dashboard-main {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: flex-start;
+}
+
+.dashboard-card {
+  flex: 1;
+  padding: 24px; /* alinhado com .card */
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.priority-card {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 18px; /* separação sutil abaixo da prioridade */
+}
+
+/* alinhamento consistente de títulos dentro dos cards */
+.card h1, .dashboard-card h2 {
+  margin-bottom: 8px;
+}
+
+/* status row: larger, balanced cards */
+.status-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+
+/* =========================
+   INSIGHTS (visual states)
+   - subtle, non-verbal cues
+========================= */
+.task-attention {
+  border-left: 4px solid rgba(245,158,11,0.9);
+  box-shadow: 0 10px 30px rgba(245,158,11,0.06);
+  transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.habit-alert {
+  border-left: 4px solid rgba(234,88,12,0.9);
+  box-shadow: 0 10px 30px rgba(234,88,12,0.05);
+  transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.calendar-heavy {
+  border-left: 4px solid rgba(59,130,246,0.9);
+  box-shadow: 0 10px 30px rgba(59,130,246,0.05);
+  transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+.status-row .dashboard-card {
+  flex: 1;
+  min-width: 220px;
+  padding: 28px;
+}
+
+.status-row .dashboard-number {
+  font-size: 40px;
+}
+
+body[data-theme="dark"] .dashboard-card {
+  background: #020617;
+}
+
+.dashboard-number {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.floating-chat {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: white;
+  font-size: 22px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+/* passive chat panel */
+.passive-chat-panel {
+  position: fixed;
+  right: 96px; /* sits left of the floating button */
+  bottom: 32px;
+  width: 320px;
+  z-index: 9999;
+  padding: 14px; /* small padding; card already sets padding too */
+}
+
+.passive-chat-panel .passive-message {
+  margin-top: 8px;
+}
+
+.passive-chat-panel .passive-chat-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: inherit;
+  opacity: 0.95;
+}
+
+.passive-chat-panel .muted {
+  opacity: 0.65;
+  font-style: italic;
+  color: inherit;
+}
+
+/* passive actions */
+.passive-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.passive-action-btn {
+  background: rgba(2,6,23,0.04);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.passive-action-btn:hover {
+  background: rgba(2,6,23,0.08);
+  transform: translateY(-2px);
+}
+
+.passive-conversation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.passive-msg {
+  max-width: 100%;
+}
+
+.life-msg .passive-msg-text {
+  color: inherit;
+  opacity: 0.95;
+  font-size: 14px;
+}
+
+.user-msg {
+  align-self: flex-end;
+}
+
+.user-msg .passive-msg-text {
+  background: rgba(2,6,23,0.06);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.passive-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+/* priority focus highlight */
+.priority-card.highlight {
+  box-shadow: 0 12px 34px rgba(37,99,235,0.08);
+  transform: translateY(-4px);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+/* =========================
+   HABITS LAYOUT
+========================= */
+.habits-section {
+  margin-top: 18px;
+}
+
+.habits-section h2 {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  margin: 0 0 8px 0;
+}
+
+.habits-section.today {
+  padding-left: 12px;
+}
+
+.habits-section.at-risk {
+  padding-left: 12px;
+  border-left: 4px solid rgba(245,158,11,0.06);
+}
+
+.habit-risk {
+  border-radius: 10px;
+  background: rgba(245,158,11,0.04);
+  padding: 8px 10px;
+}
+
+.habits-section .subtitle {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* creation area */
+.frequency-select input[type="radio"] {
+  margin-right: 8px;
+}
+
+.frequency-select label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.frequency-select input[type="radio"]:checked + strong {
+  font-weight: 700;
+}
+
+/* ensure creation card aligns with other cards */
+.card > .input-row, .card > div > .input-row {
+  margin-top: 0;
+}
+
+/* Linha de input + botão (Tasks / Habits / Calendar) */
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.form-row input {
+  flex: 1;
+  width: auto;
+}
+
+/* =========================
+   CALENDAR (Weekly view + day focus + add event)
+========================= */
+.calendar-card .subtitle {
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.calendar-week {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 18px 0;
+}
+
+.calendar-day {
+  width: 84px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(2,6,23,0.02);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.calendar-day .day-abbr {
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.calendar-day .day-number {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.calendar-day .day-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.calendar-day .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(2,6,23,0.12);
+}
+
+.calendar-day.today {
+  border: 1px solid rgba(37,99,235,0.14);
+}
+
+.calendar-day.selected {
+  background: rgba(37,99,235,0.06);
+  border-color: rgba(37,99,235,0.12);
+  box-shadow: 0 8px 20px rgba(37,99,235,0.04);
+}
+
+.calendar-focus h2 {
+  margin-top: 8px;
+}
+
+.calendar-warning {
+  margin: 10px 0 8px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(245,158,11,0.06);
+  color: inherit;
+  font-size: 13px;
+}
+
+.event-row .event-meta {
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+}
+
+.energy {
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.energy-alta {
+  color: white;
+  background: rgba(239,68,68,0.9);
+}
+
+.energy-media {
+  color: #92400e;
+  background: rgba(245,158,11,0.08);
+}
+
+.energy-baixa {
+  color: #065f46;
+  background: rgba(16,185,129,0.06);
+}
+
+/* small adjustments to make remove button fit */
+.event-row .remove-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/* =========================
+   IMPORT BUTTON (Settings)
+========================= */
+.import-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 16px;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.import-label:hover {
+  opacity: 0.9;
+}
+
+/* Small utilities for settings layout */
+.settings-section {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.settings-section h2 {
+  margin: 0 0 6px 0;
+}
+
+.settings-section .subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Page container (centralized layout for internal pages) */
+.page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+
+/* Ensure cards inside page container align and are centered */
+.page-container > .card {
+  margin: 0 auto 20px auto;
+}
+
+/* =========================
+   TOAST
+========================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  background: #020617;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  animation: toast-in 0.25s ease;
+  z-index: 9999;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   INPUT + BOTÃO (ROW)
+========================= */
+.input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.input-row button {
+  white-space: nowrap;
+}

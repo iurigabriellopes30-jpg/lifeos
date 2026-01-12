@@ -1,0 +1,20 @@
+{
+  "name": "lifeos",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test:gemini": "node scripts/test-gemini.mjs"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "dexie": "^3.2.1",
+    "vite-plugin-pwa": "^0.11.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^2.2.0",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3"
+  }
+}

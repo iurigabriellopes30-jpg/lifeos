@@ -1,0 +1,29 @@
+{
+  "meeting_id": "meeting_2026-01-08_13-43-33",
+  "transcript": [
+    {
+      "role": "user",
+      "content": "quero quero que a equipe faça o esquelo do lifeOS"
+    },
+    {
+      "role": "pm",
+      "content": "{\"type\": \"kickoff\", \"agenda\": [\"Definir escopo do esqueleto do LifeOS\", \"Identificar tecnologias e ferramentas necessárias\", \"Estabelecer prazos e responsabilidades\"], \"questions\": [\"Qual é o prazo estimado para a conclusão do esqueleto do LifeOS?\", \"Quais são os principais recursos e funcionalidades que devem ser incluídos no esqueleto do LifeOS?\", \"Quem será o responsável por liderar o desenvolvimento do esqueleto do LifeOS?\"], \"assumptions\": [\"A equipe tem experiência com React, Vite e TypeScript\", \"A equipe tem conhecimento sobre IndexedDB e Dexie\", \"A equipe tem familiaridade com criptografia automática local\"], \"risks\": [\"Dificuldades técnicas com a implementação da criptografia automática local\", \"Problemas de compatibilidade com diferentes navegadores e dispositivos\", \"Dificuldades em atender aos prazos estabelecidos\"], \"next_question\": \"Qual é o prazo estimado para a conclusão do esqueleto do LifeOS?\"}"
+    },
+    {
+      "role": "user",
+      "content": "10 minutos no maximo"
+    },
+    {
+      "role": "pm",
+      "content": "{\"type\": \"pm_turn\", \"summary\": \"Definimos o escopo do esqueleto do LifeOS e identificamos as tecnologias e ferramentas necessárias. O prazo estimado para a conclusão do esqueleto do LifeOS é de 10 minutos.\", \"decisions_so_far\": [\"Utilizar React, Vite e TypeScript para o desenvolvimento do esqueleto do LifeOS\", \"Utilizar IndexedDB via Dexie para armazenamento de dados\", \"Implementar criptografia automática local sem senha\", \"Incluir export e import de dados em formato JSON\", \"Prazo estimado para a conclusão do esqueleto do LifeOS: 10 minutos\"], \"open_points\": [\"Definir os principais recursos e funcionalidades que devem ser incluídos no esqueleto do LifeOS\", \"Identificar o responsável por liderar o desenvolvimento do esqueleto do LifeOS\", \"Desenvolver o esqueleto do LifeOS dentro do prazo estabelecido\"], \"next_question\": \"Quais são os principais recursos e funcionalidades que devem ser incluídos no esqueleto do LifeOS?\"}"
+    },
+    {
+      "role": "user",
+      "content": "os basico"
+    },
+    {
+      "role": "pm",
+      "content": "{\"type\": \"pm_turn\", \"summary\": \"Definimos o escopo do esqueleto do LifeOS, identificamos as tecnologias e ferramentas necessárias e estabelecemos o prazo estimado para a conclusão. Os recursos e funcionalidades básicos devem ser incluídos no esqueleto do LifeOS.\", \"decisions_so_far\": [\"Utilizar React, Vite e TypeScript para o desenvolvimento do esqueleto do LifeOS\", \"Utilizar IndexedDB via Dexie para armazenamento de dados\", \"Implementar criptografia automática local sem senha\", \"Incluir export e import de dados em formato JSON\", \"Prazo estimado para a conclusão do esqueleto do LifeOS: 10 minutos\", \"Incluir recursos e funcionalidades básicos no esqueleto do LifeOS\"], \"open_points\": [\"Identificar o responsável por liderar o desenvolvimento do esqueleto do LifeOS\", \"Desenvolver o esqueleto do LifeOS dentro do prazo estabelecido\"], \"next_question\": \"Quem será o responsável por liderar o desenvolvimento do esqueleto do LifeOS?\"}"
+    }
+  ]
+}

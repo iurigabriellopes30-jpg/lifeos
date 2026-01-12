@@ -1,0 +1,301 @@
+/* =========================
+   RESET
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* =========================
+   TEMA CLARO / ESCURO
+========================= */
+body[data-theme="light"] {
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+body[data-theme="dark"] {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 220px;
+  background: #020617;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar h1 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.sidebar button {
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar button.active {
+  background: #2563eb;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-width: 900px;
+}
+
+body[data-theme="dark"] .card {
+  background: #020617;
+}
+
+/* =========================
+   HEADERS
+========================= */
+h1 {
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   INPUTS + BOTÕES
+========================= */
+input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  width: 100%;
+  font-size: 14px;
+}
+
+body[data-theme="dark"] input {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   LISTAS (Tasks / Habits / Calendar)
+========================= */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty {
+  opacity: 0.6;
+  margin-top: 12px;
+}
+
+/* =========================
+   ITEM ROW (padronização)
+========================= */
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.03);
+}
+
+body[data-theme="dark"] .item-row {
+  background: rgba(255,255,255,0.05);
+}
+
+.item-row label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.item-row.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* =========================
+   BOTÃO REMOVER (X)
+========================= */
+.remove-btn {
+  background: #2563eb;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 16px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+.dashboard {
+  max-width: 900px;
+}
+
+.dashboard-cards {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.dashboard-card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+body[data-theme="dark"] .dashboard-card {
+  background: #020617;
+}
+
+.dashboard-number {
+  font-size: 32px;
+  font-weight: bold;
+}
+/* Linha de input + botão (Tasks / Habits / Calendar) */
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.form-row input {
+  flex: 1;
+  width: auto;
+}
+/* =========================
+   IMPORT BUTTON (Settings)
+========================= */
+.import-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 16px;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.import-label:hover {
+  opacity: 0.9;
+}
+/* =========================
+   TOAST
+========================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+
+  background: #020617;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  animation: toast-in 0.25s ease;
+  z-index: 9999;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   INPUT + BOTÃO (ROW)
+========================= */
+.input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.input-row button {
+  white-space: nowrap;
+}

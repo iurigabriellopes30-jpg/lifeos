@@ -1,0 +1,31 @@
+# Root ignore
+**/node_modules/
+**/dist/
+
+# OS / tools
+.DS_Store
+*.log
+
+# Env files
+.env
+.env.local
+.env.production
+.env.development
+.env.tmp
+lifeos/.env
+lifeos/.env.local
+lifeos/.env.production
+lifeos/.env.development
+lifeos/.env.tmp
+lifeos-backend/.env
+
+# Python venv
+lifeos-backend/venv/
+
+# Local runtime state
+memory.json
+financeiro.json
+financial_conversation_state.json
+tasks.json
+lifeos-backend/memory.json
+lifeos-backend/tasks.json

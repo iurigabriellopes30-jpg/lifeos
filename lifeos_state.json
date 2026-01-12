@@ -1,0 +1,19 @@
+{
+  "financeiro": {
+    "fase": 1,
+    "dividas": [
+      {
+        "id": 3,
+        "descricao": "Dívida",
+        "valor": 100.0
+      },
+      {
+        "id": 4,
+        "descricao": "Dívida",
+        "valor": 100.0
+      }
+    ],
+    "foco": "Parar sangria",
+    "ultima_atualizacao": 1768192877
+  }
+}
