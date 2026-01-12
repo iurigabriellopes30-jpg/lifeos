@@ -80,141 +80,139 @@ export default function ControlePage() {
 
   return (
     <div className="controle-page">
-      {/* ========== TOPO ========== */}
+      {/* ========== HEADER ========== */}
       <div className="controle-header">
         <h1>LifeOS</h1>
         <p className="subtitulo">Controle Financeiro</p>
       </div>
 
-      {/* ========== CARDS PRINCIPAIS ========== */}
-      <div className="controle-cards">
-        {/* CARD 1: FASE ATUAL */}
-        <div className="card">
-          <h2>Fase Atual</h2>
-          <div className="card-content">
-            <div className="fase-grid">
-              <div className="fase-item">
-                <span className="label">Fase</span>
-                <span className="valor-grande">{String(state.fase) === "1" ? "ATAQUE" : "PROTEÇÃO"}</span>
+      {/* ========== LAYOUT EM DOIS PAINÉIS ========== */}
+      <div className="controle-layout">
+        {/* PAINEL ESQUERDO */}
+        <div className="painel-esquerdo">
+          {/* FASE ATUAL */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">FASE ATUAL</h3>
+            <div className="bloco-conteudo">
+              <div className="info-row">
+                <span className="info-label">Fase:</span>
+                <span className="info-valor">{String(state.fase) === "1" ? "ATAQUE" : "PROTEÇÃO"}</span>
               </div>
-              <div className="fase-item">
-                <span className="label">Ritmo</span>
-                <span className="valor-grande">$20/dia</span>
+              <div className="info-row">
+                <span className="info-label">Ritmo:</span>
+                <span className="info-valor">$20 / dia</span>
               </div>
-              <div className="fase-item">
-                <span className="label">Status</span>
-                <span className="valor-grande">Em Progresso</span>
+              <div className="info-row">
+                <span className="info-label">Status:</span>
+                <span className="info-valor">em progresso</span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* CARD 2: FOCO DO DIA */}
-        <div className="card">
-          <h2>Foco do Dia</h2>
-          <div className="card-content">
-            <ul className="foco-list">
-              <li>Separar $20</li>
-              <li>Não criar novos gastos</li>
-            </ul>
+          {/* FOCO DO DIA */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">FOCO DO DIA</h3>
+            <div className="bloco-conteudo">
+              <ul className="lista-simples">
+                <li>• Separar $20</li>
+                <li>• Não criar novos gastos</li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        {/* CARD 3: ESTRATÉGIA */}
-        <div className="card">
-          <h2>Estratégia do LifeOS</h2>
-          <div className="card-content">
-            <ol className="estrategia-list">
-              <li>Separar $20 todos os dias até criar fôlego</li>
-              <li>Quitar dívidas por blocos</li>
-              <li>Evitar novos gastos na fase ATAQUE</li>
-              <li>Recalcular plano a cada dívida quitada</li>
-            </ol>
-            <p className="estrategia-objetivo">
-              Objetivo: sair do risco e ganhar controle
-            </p>
-          </div>
-        </div>
-
-        {/* CARD 4: VISÃO FINANCEIRA */}
-        <div className="card">
-          <h2>Visão Financeira</h2>
-          <div className="card-content">
-            <div className="financeiro-section">
-              <h3>Dívidas Ativas</h3>
+          {/* VISÃO FINANCEIRA */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">VISÃO FINANCEIRA</h3>
+            <div className="bloco-conteudo">
               {state.dividas.length > 0 ? (
-                <ul className="dividas-list">
+                <div className="dividas-secao">
                   {state.dividas.map((d) => (
-                    <li key={d.id} className="divida-row">
+                    <div key={d.id} className="divida-linha">
                       <span>{d.descricao}</span>
-                      <span className="divida-valor">R$ {d.valor.toFixed(2)}</span>
-                    </li>
+                      <span className="valor">${d.valor}</span>
+                    </div>
                   ))}
-                </ul>
+                  <div className="divida-separador"></div>
+                  <div className="divida-linha destaque">
+                    <span><strong>Total en risco</strong></span>
+                    <span className="valor"><strong>${totalDivida}</strong></span>
+                  </div>
+                  <div className="divida-linha">
+                    <span>Reserva atual:</span>
+                    <span className="valor">${reserva}</span>
+                  </div>
+                  <p className="info-pequena">(Función: não voltar ao zero)</p>
+                </div>
               ) : (
                 <p className="sem-dividas">Nenhuma dívida ativa</p>
               )}
             </div>
+          </div>
+        </div>
 
-            <div className="financeiro-totals">
-              <div className="total-linha">
-                <span>Total em risco</span>
-                <span className="total-valor">R$ {totalDivida.toFixed(2)}</span>
-              </div>
-              <div className="total-linha">
-                <span>Reserva atual</span>
-                <span className="total-valor">R$ {reserva.toFixed(2)}</span>
-              </div>
+        {/* PAINEL DIREITO */}
+        <div className="painel-direito">
+          {/* FOCO DO DIA (repetido no painel direito) */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">FOCO DO DIA</h3>
+            <div className="bloco-conteudo">
+              <ul className="lista-simples">
+                <li>• Separar $20</li>
+                <li>• Não criar novos gastos</li>
+              </ul>
             </div>
           </div>
-        </div>
 
-        {/* CARD 5: AÇÃO ÚNICA DO DIA */}
-        <div className="card card-acao">
-          <h2>Ação Única do Dia</h2>
-          <div className="card-content">
-            <label className="checkbox-grande">
-              <input
-                type="checkbox"
-                checked={acaoDiaCheck}
-                onChange={handleAcaoDia}
-              />
-              <span>Separei $20 hoje</span>
-            </label>
+          {/* ESTRATÉGIA ATUAL */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">ESTRATÉGIA ATUAL</h3>
+            <div className="bloco-conteudo">
+              <ol className="lista-numerada">
+                <li>Separar $20 tokos os dias até criar fôlego</li>
+                <li>Quitar dívidas por blocos, cemcadada pelo Catrão Nubank</li>
+                <li>Evitar novos gastos enquanto durar a fase ATAQUE</li>
+                <li>Recalcular o plano sempre que uma dívida for quitada.</li>
+              </ol>
+              <p className="objetivo">Objetivo da fase: sair do risco e ganhar controle</p>
+            </div>
           </div>
-        </div>
 
-        {/* CARD 6: CONFIRMAÇÕES */}
-        <div className="card">
-          <h2>Confirmações</h2>
-          <div className="card-content">
-            <label className="checkbox-simples">
-              <input
-                type="checkbox"
-                checked={confirmacoes.semGastos}
-                onChange={() => handleConfirmacao("semGastos")}
-              />
-              <span>Não criei novos gastos hoje</span>
-            </label>
-            <label className="checkbox-simples">
-              <input
-                type="checkbox"
-                checked={confirmacoes.seguiuPlano}
-                onChange={() => handleConfirmacao("seguiuPlano")}
-              />
-              <span>Segui o plano definido</span>
-            </label>
+          {/* AÇÃO ÚNICA DO DIA */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">AÇÃO ÚNICA DO DIA</h3>
+            <div className="bloco-conteudo">
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={acaoDiaCheck}
+                  onChange={handleAcaoDia}
+                />
+                <span>Separei $20 hoje</span>
+              </label>
+            </div>
           </div>
-        </div>
 
-        {/* CARD 7: REFLEXÃO FINAL */}
-        <div className="card card-manifesto">
-          <div className="card-content">
-            <p className="manifesto-texto">
-              Você não precisa pensar no plano.
-              <br />
-              <strong>Só executar o dia.</strong>
-            </p>
+          {/* CONFIRMAÇÕES */}
+          <div className="bloco">
+            <h3 className="bloco-titulo">CONFIRMAÇÕES</h3>
+            <div className="bloco-conteudo">
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={confirmacoes.semGastos}
+                  onChange={() => handleConfirmacao("semGastos")}
+                />
+                <span>Não criei novos gastos hoje</span>
+              </label>
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={confirmacoes.seguiuPlano}
+                  onChange={() => handleConfirmacao("seguiuPlano")}
+                />
+                <span>Segui o plano definido</span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -225,10 +223,10 @@ export default function ControlePage() {
           Falar com o LifeOS
         </button>
         <button className="btn-secondary" onClick={handleAjustarPlano}>
-          Ajustar Plano
+          Ajustar plano
         </button>
         <button className="btn-tertiary" onClick={handleEncerrarDia}>
-          Encerrar Dia
+          Encerrar dia
         </button>
       </div>
     </div>
