@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { db, cleanupRoutines } from "../../shared/db";
 import { sendMessageToAI, AIResponse } from "../../shared/ai/ai";
+import { useAuth } from "../../shared/AuthContext";
 
 type PendingAction = {
   type: string;
@@ -23,6 +24,7 @@ export default function ChatPage() {
   ]);
   const [text, setText] = useState("");
   const listRef = useRef<HTMLDivElement | null>(null);
+  const { markConsultationStarted } = useAuth();
 
   useEffect(() => {
     // scroll to bottom when messages change
@@ -38,6 +40,31 @@ export default function ChatPage() {
       try { await cleanupRoutines(); } catch {}
     })();
   }, []);
+
+  useEffect(() => {
+    // Iniciar consultoria quando entra no chat (primeira vez)
+    const startConsultation = async () => {
+      try {
+        const token = sessionStorage.getItem("lifeos:token");
+        const response = await fetch("http://localhost:8001/auth/mark-consultation-started", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+        
+        if (response.ok) {
+          console.log("[CHAT] Consultoria iniciada no backend");
+          await markConsultationStarted();
+        }
+      } catch (err) {
+        console.error("[CHAT] Erro ao iniciar consultoria:", err);
+      }
+    };
+
+    startConsultation();
+  }, [markConsultationStarted]);
 
   async function sendMessage() {
     const trimmed = text.trim();
@@ -81,6 +108,39 @@ export default function ChatPage() {
       };
       setMessages((m) => [...m, reply]);
       
+      // Detectar ações do backend
+      if (aiRes.action === "ESTRATEGIA_SALVA") {
+        console.log("[CHAT] Estratégia salva! Mostrando notificação...");
+        
+        // Mostrar notificação de sucesso
+        setTimeout(() => {
+          alert("✅ Estratégia adicionada na página de Controle Financeiro!");
+          
+          // Disparar evento de atualização global
+          window.dispatchEvent(new CustomEvent("lifeosStateUpdated", { detail: { type: "all" } }));
+          
+          // Opcional: redirecionar para controle
+          const irParaControle = confirm("Quer ir para a página de Controle Financeiro agora?");
+          if (irParaControle) {
+            window.location.href = "/controle";
+          }
+        }, 1500);
+      }
+      
+      // Detectar se a consultoria foi finalizada pelo backend (fluxo antigo)
+      if (aiRes.action === "CONSULTORIA_FINALIZADA") {
+        console.log("[CHAT] Consultoria finalizada! Redirecionando para controle financeiro...");
+        
+        // Aguardar 3 segundos para usuário ler a resposta final
+        setTimeout(() => {
+          // Disparar evento de atualização global
+          window.dispatchEvent(new CustomEvent("lifeosStateUpdated", { detail: { type: "all" } }));
+          
+          // Redirecionar para página de controle
+          window.location.href = "/controle";
+        }, 3000);
+      }
+      
       // Trigger refresh of all modules after AI action (financeiro, tasks, etc)
       console.log("[CHAT] Disparando evento lifeosStateUpdated para sincronizar UI...");
       window.dispatchEvent(new CustomEvent("lifeosStateUpdated", { detail: { type: "all" } }));
@@ -102,6 +162,15 @@ export default function ChatPage() {
       e.preventDefault();
       sendMessage();
     }
+  }
+
+  // Renderizar texto com quebras de linha preservadas
+  function renderMessageText(text: string) {
+    return text.split("\n").map((line, i) => (
+      <div key={i}>
+        {line || <br />}
+      </div>
+    ));
   }
 
   function handleVoltar() {
@@ -128,7 +197,7 @@ export default function ChatPage() {
           {messages.map((m) => (
             <div key={m.id}>
               <div className={`message ${m.sender === "user" ? "user" : "system"}`}> 
-                <div className="bubble">{m.text}</div>
+                <div className="bubble">{renderMessageText(m.text)}</div>
                 <div className="msg-ts">{new Date(m.ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
               </div>
             </div>

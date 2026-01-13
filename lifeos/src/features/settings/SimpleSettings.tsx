@@ -119,68 +119,86 @@ export default function SimpleSettings({ theme, onToggleTheme }: SimpleSettingsP
     <div className="settings-page">
       <div className="settings-header">
         <h1>Configurações</h1>
-        <p className="settings-subtitle">Personalização do LifeOS</p>
+        <p className="settings-subtitle">Personalização e controle do LifeOS</p>
       </div>
 
       <div className="settings-container">
-        {/* CARD 1: APARÊNCIA */}
+        {/* BLOCO 1: APARÊNCIA */}
         <div className="settings-card">
           <h2>Aparência</h2>
           
           <div className="settings-content">
             <div className="setting-row">
               <span className="setting-label">Tema</span>
-              <button 
-                onClick={onToggleTheme}
-                className="theme-toggle"
-              >
-                {theme === "light" ? "☀️ Claro" : "🌙 Escuro"}
-              </button>
-            </div>
-
-            <div className="setting-row">
-              <span className="setting-label">Tom do LifeOS</span>
-              <div className="tone-selector">
-                <button
-                  className={`tone-btn ${tone === "calmo" ? "active" : ""}`}
-                  onClick={() => handleToneChange("calmo")}
+              <div className="theme-toggle-group">
+                <button 
+                  onClick={theme === "light" ? onToggleTheme : undefined}
+                  className={`theme-btn ${theme === "light" ? "active" : ""}`}
                 >
-                  Calmo
+                  Claro
                 </button>
-                <button
-                  className={`tone-btn ${tone === "direto" ? "active" : ""}`}
-                  onClick={() => handleToneChange("direto")}
+                <button 
+                  onClick={theme === "dark" ? onToggleTheme : undefined}
+                  className={`theme-btn ${theme === "dark" ? "active" : ""}`}
                 >
-                  Direto
-                </button>
-                <button
-                  className={`tone-btn ${tone === "rigido" ? "active" : ""}`}
-                  onClick={() => handleToneChange("rigido")}
-                >
-                  Rígido
+                  Escuro
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* CARD 2: DADOS */}
+        {/* BLOCO 2: TOM DO LIFEOS */}
         <div className="settings-card">
-          <h2>Dados</h2>
+          <h2>Tom do LifeOS</h2>
           
           <div className="settings-content">
+            <div className="tone-selector">
+              <button
+                className={`tone-btn ${tone === "calmo" ? "active" : ""}`}
+                onClick={() => handleToneChange("calmo")}
+              >
+                Calmo
+              </button>
+              <button
+                className={`tone-btn ${tone === "direto" ? "active" : ""}`}
+                onClick={() => handleToneChange("direto")}
+              >
+                Direto
+              </button>
+              <button
+                className={`tone-btn ${tone === "rigido" ? "active" : ""}`}
+                onClick={() => handleToneChange("rigido")}
+              >
+                Rígido
+              </button>
+            </div>
+            <p className="section-note">
+              As preferências de aparência afetam apenas a UI e o tom das respostas.
+            </p>
+          </div>
+        </div>
+
+        {/* BLOCO 3: DADOS DO SISTEMA */}
+        <div className="settings-card">
+          <h2>Dados do Sistema</h2>
+          
+          <div className="settings-content">
+            <p className="data-description">
+              Exporte ou importe backups do estado do LifeOS.
+            </p>
             <div className="data-buttons">
               <button 
                 onClick={handleExport}
                 className="btn-data btn-export"
               >
-                📥 Exportar Dados
+                Exportar dados
               </button>
               <button 
                 onClick={handleImport}
                 className="btn-data btn-import"
               >
-                📤 Importar Dados
+                Importar dados
               </button>
               <input
                 ref={fileInputRef}
@@ -190,33 +208,22 @@ export default function SimpleSettings({ theme, onToggleTheme }: SimpleSettingsP
                 style={{ display: "none" }}
               />
             </div>
-
-            <p className="data-description">
-              Salva seu estado financeiro e histórico de transações
-            </p>
           </div>
         </div>
 
-        {/* CARD 3: SISTEMA */}
+        {/* BLOCO 4: SISTEMA */}
         <div className="settings-card">
           <h2>Sistema</h2>
           
           <div className="settings-content">
-            <div className="system-info">
-              <div className="info-row">
-                <span className="info-label">Versão</span>
-                <span className="info-value">LifeOS v1.0</span>
-              </div>
-              <div className="info-row">
-                <span className="info-label">Módulo</span>
-                <span className="info-value">Controle Financeiro</span>
-              </div>
-              <div className="info-row">
-                <span className="info-label">Atualizado</span>
-                <span className="info-value">{new Date().toLocaleDateString("pt-BR")}</span>
-              </div>
-            </div>
+            <p className="system-version">LifeOS v1.0 — Controle Financeiro</p>
           </div>
+        </div>
+
+        {/* QUOTE FINAL */}
+        <div className="settings-quote">
+          <p>"Você não precisa pensar no plano.</p>
+          <p>Só executar o dia."</p>
         </div>
       </div>
 

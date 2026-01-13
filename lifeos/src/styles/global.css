@@ -341,13 +341,13 @@ body[data-theme="dark"] .item-row {
 .messages-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 }
 
 .message {
   display: flex;
   flex-direction: column;
-  max-width: 78%;
+  max-width: 82%;
 }
 
 .message.user {
@@ -362,30 +362,36 @@ body[data-theme="dark"] .item-row {
 
 .bubble {
   display: inline-block;
-  padding: 10px 14px;
+  padding: 14px 18px;
   border-radius: 12px;
   background: rgba(2,6,23,0.06);
   color: inherit;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .message.user .bubble {
   background: #2563eb;
   color: white;
+  line-height: 1.6;
 }
 
 .msg-ts {
   opacity: 0.56;
   font-size: 12px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .chat-input-bar input {
-  padding: 10px 12px;
+  padding: 12px 16px;
+  font-size: 15px;
 }
 
 .chat-input-bar button {
-  padding: 10px 14px;
+  padding: 12px 20px;
+  font-size: 15px;
 }
 
 /* =========================

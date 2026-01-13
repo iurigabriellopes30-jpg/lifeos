@@ -6,6 +6,7 @@
   padding: 2rem 2rem 6rem 2rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* ========== HEADER ========== */
@@ -97,6 +98,19 @@
   color: #ffffff;
   font-weight: 600;
   font-size: 0.95rem;
+}
+
+/* Formatação da estratégia */
+.foco-principal {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+.foco-principal strong {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* ========== LISTAS ========== */
@@ -218,10 +232,10 @@
 
 /* ========== AÇÕES FIXAS ========== */
 .acoes-fixas {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   background: #1f1f1f;
   border-top: 1px solid #333;
   padding: 1rem 2rem;
@@ -229,8 +243,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2rem auto 0 auto;
   z-index: 100;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -247,42 +260,36 @@ button {
 }
 
 .btn-primary {
-  background: #4a9eff;
-  color: #ffffff;
-  border: 2px solid #4a9eff;
+  background: #2f2f2f;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
 }
 
 .btn-primary:hover {
-  background: #357abd;
-  border-color: #357abd;
-  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.4);
-  transform: translateY(-1px);
+  background: #383838;
+  border-color: #404040;
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #4caf50;
-  border: 2px solid #4caf50;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #353535;
 }
 
 .btn-secondary:hover {
-  background: #4caf50;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
-  transform: translateY(-1px);
+  background: #333333;
+  border-color: #3a3a3a;
 }
 
 .btn-tertiary {
-  background: transparent;
-  color: #ff6b6b;
-  border: 2px solid #ff6b6b;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #353535;
 }
 
 .btn-tertiary:hover {
-  background: #ff6b6b;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
-  transform: translateY(-1px);
+  background: #333333;
+  border-color: #3a3a3a;
 }
 
 /* ========== RESPONSIVE ========== */

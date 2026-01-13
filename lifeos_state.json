@@ -15,5 +15,52 @@
     ],
     "foco": "Parar sangria",
     "ultima_atualizacao": 1768192877
+  },
+  "users": {
+    "1": {
+      "financeiro": {
+        "fase": 3,
+        "dividas": [
+          {
+            "nome": "cartao nubank valor 213",
+            "valor": 213.0,
+            "juros": 0
+          }
+        ],
+        "foco": "Construir reservas",
+        "renda_mensal": 3000.0,
+        "gastos_fixos": 1500.0,
+        "disponivel": 1500.0,
+        "ultima_atualizacao": 1768261738
+      }
+    },
+    "2": {
+      "financeiro": {
+        "fase": 2,
+        "dividas": [
+          {
+            "nome": "cartao nubank",
+            "valor": 2000.0,
+            "juros": 2.5
+          }
+        ],
+        "foco": "Pagar dívidas",
+        "renda_mensal": 3000.0,
+        "gastos_fixos": 1400.0,
+        "disponivel": 1600.0,
+        "ultima_atualizacao": 1768260497.442954
+      }
+    },
+    "3": {
+      "financeiro": {
+        "fase": 3,
+        "dividas": [],
+        "foco": "Construir reservas",
+        "renda_mensal": 3000.0,
+        "gastos_fixos": 1500.0,
+        "disponivel": 1500.0,
+        "ultima_atualizacao": 1768260764.978086
+      }
+    }
   }
 }

@@ -14,11 +14,21 @@ export type AIResponse = {
 export async function sendMessageToAI(message: string, context?: any): Promise<AIResponse> {
   const url = "http://localhost:8001/chat";
   
+  // Obter token do sessionStorage
+  const token = sessionStorage.getItem("lifeos:token");
+  
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  
   const res = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
+    credentials: "include",
     body: JSON.stringify({ message, context }),
   });
 
