@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "cd lifeos && rm -rf node_modules package-lock.json && npm install && npm run build",
   "builds": [
     {
       "src": "lifeos/package.json",
@@ -10,5 +11,8 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  ],
+  "env": {
+    "FORCE_BUILD": "true"
+  }
 }
