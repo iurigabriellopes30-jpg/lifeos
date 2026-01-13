@@ -1,5 +1,6 @@
-// sendMessageToAI: Backend caller (FastAPI on localhost:8000)
+// sendMessageToAI: Backend caller (FastAPI configured via env)
 // No API keys in frontend - all AI calls go through backend
+import { apiUrl } from "../api";
 
 export type AISuggestedAction = {
   type: string;
@@ -12,7 +13,7 @@ export type AIResponse = {
 };
 
 export async function sendMessageToAI(message: string, context?: any): Promise<AIResponse> {
-  const url = "http://localhost:8001/chat";
+  const url = apiUrl("/chat");
   
   // Obter token do sessionStorage
   const token = sessionStorage.getItem("lifeos:token");

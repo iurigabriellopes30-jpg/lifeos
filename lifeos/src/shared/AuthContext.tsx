@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { apiUrl } from "./api";
 
 interface User {
   id: number;
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         headers["Authorization"] = `Bearer ${storedToken}`;
       }
 
-      const response = await fetch("http://localhost:8001/auth/me", {
+      const response = await fetch(apiUrl("/auth/me"), {
         method: "GET",
         credentials: "include",
         headers,
@@ -66,7 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         headers["Authorization"] = `Bearer ${storedToken}`;
       }
 
-      const response = await fetch("http://localhost:8001/auth/mark-consultation-started", {
+      const response = await fetch(apiUrl("/auth/mark-consultation-started"), {
         method: "POST",
         credentials: "include",
         headers,
@@ -92,7 +93,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const storedToken = sessionStorage.getItem("lifeos:token");
         if (storedToken) {
           // Verify token by calling /auth/me with Authorization header
-          const response = await fetch("http://localhost:8001/auth/me", {
+          const response = await fetch(apiUrl("/auth/me"), {
             method: "GET",
             credentials: "include",
             headers: {
@@ -132,7 +133,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     try {
       setError(null);
-      const response = await fetch("http://localhost:8001/auth/login", {
+      const response = await fetch(apiUrl("/auth/login"), {
         method: "POST",
         credentials: "include",
         headers: {
@@ -163,7 +164,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      await fetch("http://localhost:8001/auth/logout", {
+      await fetch(apiUrl("/auth/logout"), {
         method: "POST",
         credentials: "include",
         headers: {
@@ -188,7 +189,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setToken(token);
       
       // Verify token and get user info
-      const response = await fetch("http://localhost:8001/auth/me", {
+      const response = await fetch(apiUrl("/auth/me"), {
         method: "GET",
         credentials: "include",
         headers: {

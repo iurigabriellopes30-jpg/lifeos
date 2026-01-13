@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../shared/AuthContext";
+import { apiUrl } from "../../shared/api";
 import "./OnboardingPage.css";
 
 export default function OnboardingPage() {
@@ -12,7 +13,7 @@ export default function OnboardingPage() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("lifeos:token");
-      const response = await fetch("http://localhost:8001/auth/onboarding", {
+      const response = await fetch(apiUrl("/auth/onboarding"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

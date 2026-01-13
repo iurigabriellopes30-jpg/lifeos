@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { apiUrl } from "../../shared/api";
 import "./SimpleSettings.css";
 
 type Tone = "calmo" | "direto" | "rigido";
@@ -25,13 +26,13 @@ export default function SimpleSettings({ theme, onToggleTheme }: SimpleSettingsP
   const handleExport = async () => {
     try {
       // Fetch state
-      const stateResponse = await fetch("http://localhost:8001/financeiro");
+      const stateResponse = await fetch(apiUrl("/financeiro"));
       const state = await stateResponse.json();
 
       // Fetch history if exists
       let history = null;
       try {
-        const historyResponse = await fetch("http://localhost:8001/financeiro/historico");
+        const historyResponse = await fetch(apiUrl("/financeiro/historico"));
         if (historyResponse.ok) {
           history = await historyResponse.json();
         }
@@ -90,7 +91,7 @@ export default function SimpleSettings({ theme, onToggleTheme }: SimpleSettingsP
       };
 
       // Send to backend for processing
-      const response = await fetch("http://localhost:8001/chat", {
+      const response = await fetch(apiUrl("/chat"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

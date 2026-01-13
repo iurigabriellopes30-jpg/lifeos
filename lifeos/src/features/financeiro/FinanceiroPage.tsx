@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../../shared/api";
 
 type FinanceiroState = {
   id: number;
@@ -18,7 +19,7 @@ export default function FinanceiroPage() {
   async function loadFinanceiro() {
     try {
       const timestamp = Date.now();
-      const res = await fetch(`http://localhost:8001/financeiro?t=${timestamp}`, {
+      const res = await fetch(apiUrl(`/financeiro?t=${timestamp}`), {
         cache: "no-store",
         headers: { "Cache-Control": "no-cache, no-store, must-revalidate" }
       });

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { db, cleanupRoutines } from "../../shared/db";
 import { sendMessageToAI, AIResponse } from "../../shared/ai/ai";
 import { useAuth } from "../../shared/AuthContext";
+import { apiUrl } from "../../shared/api";
 
 type PendingAction = {
   type: string;
@@ -46,7 +47,7 @@ export default function ChatPage() {
     const startConsultation = async () => {
       try {
         const token = sessionStorage.getItem("lifeos:token");
-        const response = await fetch("http://localhost:8001/auth/mark-consultation-started", {
+        const response = await fetch(apiUrl("/auth/mark-consultation-started"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

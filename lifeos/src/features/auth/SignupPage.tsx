@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../shared/AuthContext";
+import { apiUrl } from "../../shared/api";
 import "./SignupPage.css";
 
 export default function SignupPage() {
@@ -33,7 +34,7 @@ export default function SignupPage() {
     try {
       setError("");
       setLoading(true);
-      const response = await fetch("http://localhost:8001/auth/signup", {
+      const response = await fetch(apiUrl("/auth/signup"), {
         method: "POST",
         credentials: "include",
         headers: {

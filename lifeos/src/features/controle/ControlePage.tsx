@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../../shared/api";
 import "./ControlePage.css";
 
 interface Divida {
@@ -58,7 +59,7 @@ export default function ControlePage() {
           headers["Authorization"] = `Bearer ${token}`;
         }
         
-        const response = await fetch("http://localhost:8001/financeiro", {
+        const response = await fetch(apiUrl("/financeiro"), {
           headers
         });
         const data = await response.json();
@@ -98,7 +99,7 @@ export default function ControlePage() {
         }))
       };
       
-      await fetch("http://localhost:8001/financeiro/atualizar", {
+      await fetch(apiUrl("/financeiro/atualizar"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +109,7 @@ export default function ControlePage() {
       });
       
       // Recarregar dados
-      const response = await fetch("http://localhost:8001/financeiro", {
+      const response = await fetch(apiUrl("/financeiro"), {
         headers: { "Authorization": `Bearer ${token}` }
       });
       const data = await response.json();
